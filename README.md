@@ -10,7 +10,7 @@
 ## Features
 
 - Compatible with Nuxt 3 and Nuxt Kit
-- Unified build with [unjs/unbuild](https://github.com/unjs/unbuild)
+- Powered by [rolldown](https://rolldown.rs) and [unjs/mkdist](https://github.com/unjs/mkdist)
 - Automated build config using last module spec
 - Typescript and ESM support
 - Auto generated types and shims for `@nuxt/schema`
@@ -128,16 +128,14 @@ A minimum `package.json` should look like this:
 
 ### `build.config.ts` (optional)
 
-Module builder is essentially a preset for [unjs/unbuild](https://github.com/unjs/unbuild), check out the [build command](./src/commands/build.ts#L51) for reference.
+To add additional module entry points beyond `src/module`, specify them in `package.json` under `build.entries`:
 
-To customize/extend the unbuild configuration you can add a `build.config.ts` in the root of your project:
-
-```ts
-import { defineBuildConfig } from 'unbuild'
-
-export default defineBuildConfig({
-  // set additional configuration or customize using hooks
-})
+```json
+{
+  "build": {
+    "entries": ["./src/utils"]
+  }
+}
 ```
 
 ## Dist files
